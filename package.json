@@ -1,0 +1,22 @@
+{
+  "name": "attendance-tracker",
+  "version": "1.0.0",
+  "description": "Attendance-tracker using electrion js",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlowJava/Attendance-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlowJava/Attendance-tracker/issues"
+  },
+  "homepage": "https://github.com/BlowJava/Attendance-tracker#readme",
+  "devDependencies": {
+    "electron": "^25.5.0"
+  }
+}
