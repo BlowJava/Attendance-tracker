@@ -4,12 +4,13 @@ import { MyComp } from 'Components/MyComp'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
   return (
     <>
       <h1>Test</h1>
-      <MyComp name='1'/>
+      <MyComp name={count.toString()}/>
+      <button onClick={() => setCount(prev => prev + 1)}>Add</button>
     </>
   )
 }
