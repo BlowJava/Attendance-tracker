@@ -1,16 +1,43 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
-import { MyComp } from 'Components/MyComp'
-
+import { IUser } from './Interfaces';
 
 function App() {
-  const [count, setCount] = useState(1)
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    let sub = true;
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+        const json = await res.json()
+
+        if(sub){
+          setUsers(json)
+        }
+      }catch(e){
+        console.log(e)
+      }
+    }
+
+    fetchUser()
+
+    return () => {
+      sub = false;
+    }
+  }, []);
 
   return (
     <>
       <h1>Test</h1>
-      <MyComp name={count.toString()}/>
-      <button onClick={() => setCount(prev => prev + 1)}>Add</button>
+      {users.map((user: IUser) => {
+        return (
+          <div key={user.id}>
+            <p>{user.name}</p>
+            <a href={'https://jsonplaceholder.typicode.com/users/' + user.id}>link</a>
+          </div>
+        )
+      })}
     </>
   )
 }
