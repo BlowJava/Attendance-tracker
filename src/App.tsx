@@ -25,7 +25,6 @@ function App() {
         const tokenResponse = await axios.post(tokenEndPoint, new URLSearchParams(headersData));
         const accessToken = tokenResponse.data.access_token;
   
-        const date = new Date().toISOString().split('T')[0]; // today's date
         const endpoint = `https://time-attendance.prod.jibble.io/v1/TimesheetsSummary?period=Custom&date=2023-08-01&endDate=2023-08-08`;
         const response = await axios.get(endpoint, {
           headers: {
