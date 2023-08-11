@@ -27,6 +27,7 @@
       ],
       "Components/*": ["./src/Components/*"],
       "Interfaces/*": ["./src/Data/Interfaces/*"],
+      "Functions/*": ["./src/Data/Functions/*"]
     }
   },
   "include": ["src", "electron"],

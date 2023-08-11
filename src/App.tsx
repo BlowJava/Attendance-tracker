@@ -2,9 +2,10 @@ import { useMemo, useState, useEffect } from 'react'
 import Navbar from 'Components/Navbar'
 import Table from 'Components/Table'
 import { useReactTable, getCoreRowModel } from '@tanstack/react-table'
-import mockJSON from './MOCK_DATA.json'
 import { columns } from 'Interfaces/TableColumns'
+import { calculateTotalHours } from 'Functions/CalculateTotalHours'
 import axios from 'axios'
+
 
 function App() {
   const [employees, setEmployees] = useState<[]>([]);
@@ -25,7 +26,7 @@ function App() {
         const accessToken = tokenResponse.data.access_token;
   
         const date = new Date().toISOString().split('T')[0]; // today's date
-        const endpoint = `https://time-attendance.prod.jibble.io/v1/TimesheetsSummary?period=Custom&date=${date}&endDate=${date}`;
+        const endpoint = `https://time-attendance.prod.jibble.io/v1/TimesheetsSummary?period=Custom&date=2023-08-01&endDate=2023-08-08`;
         const response = await axios.get(endpoint, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -36,15 +37,16 @@ function App() {
         console.log('Timesheets Data:', timesheetsData);
         // Modified Transformation
         const empData = timesheetsData.map((item: any) => {
-          const [firstName, lastName] = item.person.fullName.split(' ');
+          const totalHours = calculateTotalHours(item.daily);
           return {
             personId: item.personId,
-            firstName: firstName,
-            lastName: lastName,
+            fullName: item.person.fullName,
             pictureUrl: item.person.pictureUrl,
             code: item.person.code,
+            totalHours: totalHours.toFixed(2),
             status: item.person.status,
-            date: item.daily[0].date
+            start: item.daily[0].date,
+            end: item.daily[item.daily.length - 1].date
           };
         })
         console.log(empData)
