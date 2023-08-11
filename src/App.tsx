@@ -7,7 +7,8 @@ function App() {
 
   useEffect(() => {
     let subscribe = true;
-    //A function fetching a data from api
+
+    // Flag to track if the component is still mounted
     const fetchUrl = async() => {
       const res: Response = await fetch('https://jsonplaceholder.typicode.com/users');
       const data = await res.json();
@@ -17,14 +18,13 @@ function App() {
       }
     }
 
-    //Call a fetch function
     fetchUrl();
 
-    // Unsubscribe
+    // This function will run when the component unmounts or when the effect is re-run
     return () => {
-      subscribe = false;
+      subscribe = false; // Set the flag to false when unmounting
     }
-  }, []) // This effect will run once!
+  }, []) // The empty array means this effect only runs once, put a dependency state to watch changes!
 
   return (
     <>
