@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 import path from "node:path";
 
 // The built directory structure
@@ -43,6 +43,9 @@ function createWindow() {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(process.env.DIST, "index.html"));
   }
+
+  // Remove the default Menu
+  Menu.setApplicationMenu(null);
 }
 
 app.on("window-all-closed", () => {
