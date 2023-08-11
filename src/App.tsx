@@ -6,26 +6,25 @@ function App() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    let sub = true;
-    const fetchUser = async () => {
-      try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/users');
-        const json = await res.json()
+    let subscribe = true;
+    //A function fetching a data from api
+    const fetchUrl = async() => {
+      const res: Response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await res.json();
 
-        if(sub){
-          setUsers(json)
-        }
-      }catch(e){
-        console.log(e)
+      if(subscribe){
+        setUsers(data);
       }
     }
 
-    fetchUser()
+    //Call a fetch function
+    fetchUrl();
 
+    // Unsubscribe
     return () => {
-      sub = false;
+      subscribe = false;
     }
-  }, []);
+  }, []) // This effect will run once!
 
   return (
     <>
