@@ -25,6 +25,11 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+    minWidth: 800,
+    minHeight: 600,
+    width: 1200,
+    height: 800,
+    useContentSize: true,
   });
 
   // Test active push message to Renderer-process.

@@ -23,10 +23,10 @@
     // Paths
     "paths": {
       "@/": [
-        "./src/"
+        "./src/",
       ],
       "Components/*": ["./src/Components/*"],
-
+      "Interfaces/*": ["./src/Interfaces/*"],
     }
   },
   "include": ["src", "electron"],
