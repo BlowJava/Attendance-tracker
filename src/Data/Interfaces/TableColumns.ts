@@ -1,17 +1,17 @@
 export const columns = [
   {
     header: "ID",
-    accessorKey: "id",
+    accessorKey: "personId",
     footer: "ID",
   },
   {
     header: "First Name",
-    accessorKey: "first",
+    accessorKey: "firstName",
     footer: "First Name",
   },
   {
     header: "Last Name",
-    accessorKey: "last",
+    accessorKey: "lastName",
     footer: "Last Name",
   },
   {

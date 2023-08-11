@@ -35,14 +35,19 @@ function App() {
         const timesheetsData = response.data.value || [];
         console.log('Timesheets Data:', timesheetsData);
         // Modified Transformation
-        const empData = timesheetsData.map((item: any) => ({
-          id: item.personId,
-          fullName: item.person.fullName,
-          pictureUrl: item.person.pictureUrl,
-          code: item.person.code,
-          status: item.person.status,
-          date: item.daily[0].date
-        }))
+        const empData = timesheetsData.map((item: any) => {
+          const [firstName, lastName] = item.person.fullName.split(' ');
+          return {
+            personId: item.personId,
+            firstName: firstName,
+            lastName: lastName,
+            pictureUrl: item.person.pictureUrl,
+            code: item.person.code,
+            status: item.person.status,
+            date: item.daily[0].date
+          };
+        })
+        console.log(empData)
         if(subscribe){
           setEmployees(empData);
         }
@@ -59,7 +64,7 @@ function App() {
     }
   }, [])
 
-  const data = useMemo(() => mockJSON, [])
+  const data = useMemo(() => employees, [])
   
   const table = useReactTable({
     columns,
