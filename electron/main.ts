@@ -24,6 +24,9 @@ function createWindow() {
     icon: path.join(process.env.PUBLIC, "electron-vite.svg"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      webSecurity: false,
+      allowRunningInsecureContent: true,
     },
     minWidth: 800,
     minHeight: 600,
@@ -45,7 +48,7 @@ function createWindow() {
   }
 
   // Remove the default Menu
-  Menu.setApplicationMenu(null);
+  //Menu.setApplicationMenu(null);
 }
 
 app.on("window-all-closed", () => {

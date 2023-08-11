@@ -1,4 +1,3 @@
-import React, { useMemo } from 'react'
 import {   
   Table as ShadTable,
   TableBody,
@@ -8,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from './ui/table'
-import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table'
+import { flexRender } from '@tanstack/react-table'
 
 type Props = {
   caption: string,
