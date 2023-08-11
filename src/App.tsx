@@ -34,8 +34,17 @@ function App() {
   
         const timesheetsData = response.data.value || [];
         console.log('Timesheets Data:', timesheetsData);
+        // Modified Transformation
+        const empData = timesheetsData.map((item: any) => ({
+          id: item.personId,
+          fullName: item.person.fullName,
+          pictureUrl: item.person.pictureUrl,
+          code: item.person.code,
+          status: item.person.status,
+          date: item.daily[0].date
+        }))
         if(subscribe){
-          setEmployees(timesheetsData);
+          setEmployees(empData);
         }
       }catch (error) {
         console.error('Error fetching data:', error);
